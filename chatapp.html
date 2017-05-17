@@ -1,0 +1,42 @@
+<head>
+    <title>Chat</title>
+</head>
+<body>
+  <p>{{> loginButtons}}</p>
+  {{#if currentUser}}
+    {{> mychatroom }}
+    {{> chatroom }}
+    {{> chatmsg }}
+  {{else}}
+    <p>You must be logged-in to see this content.</p>
+  {{/if}}
+</body>
+
+<template name="chatroom">
+  <h3>List of chat room</h3>
+  <form id="new-chat-room">
+   <input type="text" name="text" placeholder="Type to add new chat room" />
+  </form>
+  <ul>
+  {{#each chatrooms }}
+    <li class='chatroom'>{{name}} </li>
+  {{/each}} 
+  </ul>
+  <hr>
+</template>
+
+<template name="chatmsg">
+  <h3>Chat Messages</h3>
+  <form id="new-chat-msg">
+   <input type="text" name="text" placeholder="Type to add new chat msg" />
+  </form>
+  <hr>
+  {{#each chatmsg}}
+   <p>{{extractEmailName createdByEmail}} : {{msg}}</p>
+  {{/each}}
+</template>
+
+<template name="mychatroom">
+ <p>Selected chat room <b>{{mychatroom.name}}</b></p>
+</template>
+
